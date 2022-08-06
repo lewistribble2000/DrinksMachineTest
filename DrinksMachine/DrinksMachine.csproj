@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Coffee.jpg" />
+    <None Remove="Images\HotChocolate.jpg" />
+    <None Remove="Images\LemonTea.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Coffee.jpg" />
+    <Resource Include="Images\HotChocolate.jpg" />
+    <Resource Include="Images\LemonTea.jpg" />
+  </ItemGroup>
+
+</Project>

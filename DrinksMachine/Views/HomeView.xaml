@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="DrinksMachine.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DrinksMachine.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="LightGray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2">
+            <Button Command="{Binding ShowSub1Command}" Width="150" Margin="0, 15, 0, 8">
+                <Image Source="/Images/LemonTea.jpg"/>
+                <Button.RenderTransform>
+                    <TranslateTransform x:Name="translateLemonTea" X="-500" />
+                </Button.RenderTransform>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard Duration="0:0:5.0">
+                                <DoubleAnimation Storyboard.TargetName="translateLemonTea" 
+                                     Storyboard.TargetProperty="X"
+                                     To="0">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            
+            <Button Command="{Binding ShowSub2Command}" Width="150" Margin="0, 10, 0, 8">
+                <Image Source="/Images/Coffee.jpg"/>
+                <Button.RenderTransform>
+                    <TranslateTransform x:Name="translateCoffee" X="-500" />
+                </Button.RenderTransform>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard Duration="0:0:5.0">
+                                <DoubleAnimation Storyboard.TargetName="translateCoffee" 
+                                     Storyboard.TargetProperty="X"
+                                     To="0">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            
+            <Button Command="{Binding ShowSub3Command}" Width="150" Margin="0, 10, 0, 8">
+                <Image Source="/Images/HotChocolate.jpg"/>
+                <Button.RenderTransform>
+                    <TranslateTransform x:Name="translateHotChocolate" X="-500" />
+                </Button.RenderTransform>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard Duration="0:0:5.0">
+                                <DoubleAnimation Storyboard.TargetName="translateHotChocolate" 
+                                     Storyboard.TargetProperty="X"
+                                     To="0">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button x:Name="btnQuit" Click="btnQuit_Click">Don't need a drink? Close here</Button>
+        </StackPanel>
+
+        <Border Grid.Column="1" BorderBrush="Purple" BorderThickness="1">
+            <Grid x:Name="gridDrinksCount" Grid.Column="1" Background="DarkGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="140"/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Text="Drinks Count" FontSize="15"/>
+                <TextBlock x:Name="txtLemonTeaCount" Text="{Binding Path=LemonTeaCount, StringFormat='Lemon Tea: {0}'}" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="txtCoffeeCount" Text="{Binding Path=CoffeeCount, StringFormat='Coffee: {0}'}" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock x:Name="txtHotChocolateCount" Text="{Binding Path=HotChocolateCount, StringFormat='Hot Chocolate: {0}'}" Grid.Row="2" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+    
+</UserControl>

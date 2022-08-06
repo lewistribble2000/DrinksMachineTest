@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="DrinksMachine.Views.Sub2View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DrinksMachine.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" Background="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="imgTea" Visibility="Collapsed" Source="/Images/Coffee.jpg"/>
+        <Button x:Name="btnReturn" Content="Choose your next drink" Command="{Binding BackCommand}" Grid.Row="0" VerticalAlignment="Bottom" Visibility="Collapsed"/>
+
+        <TextBlock x:Name="txtProgress" Foreground="Black" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <StringAnimationUsingKeyFrames Storyboard.TargetName="txtProgress" Storyboard.TargetProperty="(TextBlock.Text)"
+                                                           Duration="0:0:10" FillBehavior="HoldEnd">
+                                <DiscreteStringKeyFrame Value="Boiling the water..." KeyTime="0:0:0" />
+                                <DiscreteStringKeyFrame Value="Brewing the coffee grounds" KeyTime="0:0:3" />
+                                <DiscreteStringKeyFrame Value="Pouring your coffee..." KeyTime="0:0:6" />
+                                <DiscreteStringKeyFrame Value="Adding some sugar and milk" KeyTime="0:0:8" />
+                                <DiscreteStringKeyFrame Value="Your coffee is ready" KeyTime="0:0:10"/>
+                            </StringAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+        <ProgressBar Minimum="0" Maximum="100" Height="10" VerticalAlignment="Bottom" Grid.Row="2">
+            <ProgressBar.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0" To="100" Storyboard.TargetProperty="Value" Duration="00:00:10"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ProgressBar.Triggers>
+        </ProgressBar>
+    </Grid>
+</UserControl>
