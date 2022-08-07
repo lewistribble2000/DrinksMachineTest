@@ -19,13 +19,14 @@ namespace DrinksMachine.Views
     /// </summary>
     public partial class Sub2View : UserControl
     {
+        private const string READY_TEXT = "Adding some sugar and milk...";
         private DispatcherTimer dispatcherTimer;
         public Sub2View()
         {
             InitializeComponent();
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 6);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -36,9 +37,29 @@ namespace DrinksMachine.Views
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            imgTea.Visibility = Visibility.Visible;
-            btnReturn.Visibility = Visibility.Visible;
-            dispatcherTimer.IsEnabled = false;
+            btnPour.Visibility = Visibility.Visible;
+            ellipse.Visibility = Visibility.Visible;
+
+            if (txtProgress.Text == READY_TEXT)
+            {
+                txtProgress.Text = "Your drink is ready";
+                btnReturn.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnPour_Click(object sender, RoutedEventArgs e)
+        {
+            if (y.Value == -0.6)
+            {
+                btnPour.Visibility = Visibility.Collapsed;
+                ellipse.Visibility = Visibility.Collapsed;
+                imgTea.Visibility = Visibility.Visible;
+                txtProgress.Text = READY_TEXT;
+            }
+            else
+            {
+                y.Value -= 0.04;
+            }
         }
     }
 }

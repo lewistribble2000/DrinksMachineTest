@@ -12,6 +12,34 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
+        <Canvas>
+            <Ellipse Visibility="Collapsed" x:Name="ellipse" Fill="#F24F02" Height="160" Canvas.Left="320" Canvas.Top="80" Width="160">
+                <Ellipse.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=wave}" TileMode="Tile" Viewport="0,-1,1,3" Stretch="None"  >
+                        <VisualBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="{Binding Value,ElementName=y}"  />
+                            </TransformGroup>
+                        </VisualBrush.RelativeTransform>
+                    </VisualBrush>
+                </Ellipse.OpacityMask>
+            </Ellipse>
+            <Grid x:Name="wave" Height="377" Canvas.Left="-250" Canvas.Top="23" Width="160" Background="#00000000">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="{Binding Value,ElementName=amplitude}"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Path Fill="#FF82C6FF" Data="M12.5,1.6925709 C31.25,1.6925709 31.25,18.615654 50,18.615654 68.75,18.615654 68.75,1.6925709 87.5,1.6925709 87.499909,27.077196 87.5,27.077107 87.5,27.077107 63.28125,27.077136 12.5,27.077196 12.5,27.077196 12.5,27.077196 12.500094,27.077196 12.5,1.6925709 z" Stretch="Fill" Grid.Row="1"/>
+                <Rectangle Fill="#FF82C6FF" Grid.Row="2" Margin="0,-1,0,0" />
+            </Grid>
+            <Slider Visibility="Collapsed" x:Name="y" Width="200" Minimum="-0.6" Maximum="1" Value="0.5"/>
+            <Slider Visibility="Collapsed" x:Name="amplitude"  Minimum="1" Maximum="100" Value="20"/>
+        </Canvas>
+        <RepeatButton x:Name="btnPour" Content="Pour your drink" Visibility="Collapsed" Click="btnPour_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="0"/>
         <Image x:Name="imgTea" Visibility="Collapsed" Source="/Images/LemonTea.jpg"/>
         <Button x:Name="btnReturn" Content="Choose your next drink" Command="{Binding BackCommand}" Grid.Row="0" VerticalAlignment="Bottom" Visibility="Collapsed"/>
 
@@ -21,12 +49,10 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <StringAnimationUsingKeyFrames Storyboard.TargetName="txtProgress" Storyboard.TargetProperty="(TextBlock.Text)"
-                                                           Duration="0:0:10" FillBehavior="HoldEnd">
+                                                           Duration="0:0:5" FillBehavior="Stop">
                                 <DiscreteStringKeyFrame Value="Boiling the water..." KeyTime="0:0:0" />
                                 <DiscreteStringKeyFrame Value="Steeping the water..." KeyTime="0:0:3" />
-                                <DiscreteStringKeyFrame Value="Pouring your tea..." KeyTime="0:0:6" />
-                                <DiscreteStringKeyFrame Value="Adding the lemon" KeyTime="0:0:8" />
-                                <DiscreteStringKeyFrame Value="Your lemon tea is ready" KeyTime="0:0:10"/>
+                                <DiscreteStringKeyFrame Value="Please pour your tea" KeyTime="0:0:5" />
                             </StringAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
@@ -38,7 +64,7 @@
                 <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation From="0" To="100" Storyboard.TargetProperty="Value" Duration="00:00:10"/>
+                            <DoubleAnimation From="0" To="100" Storyboard.TargetProperty="Value" Duration="00:00:5"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
