@@ -58,7 +58,7 @@ namespace DrinksMachine.Views
             }
             else
             {
-                y.Value -= 0.04;
+                y.Value -= 0.01;
             }
         }
     }

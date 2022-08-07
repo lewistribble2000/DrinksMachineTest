@@ -37,9 +37,9 @@
                 <Rectangle Fill="#FF82C6FF" Grid.Row="2" Margin="0,-1,0,0" />
             </Grid>
             <Slider Visibility="Collapsed" x:Name="y" Width="200" Minimum="-0.6" Maximum="1" Value="0.5"/>
-            <Slider Visibility="Collapsed" x:Name="amplitude"  Minimum="1" Maximum="100" Value="20"/>
+            <Slider Visibility="Collapsed" x:Name="amplitude" Width="200"  Minimum="1" Maximum="100" Value="20"/>
         </Canvas>
-        <RepeatButton x:Name="btnPour" Content="Pour your drink" Visibility="Collapsed" Click="btnPour_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="0"/>
+        <RepeatButton x:Name="btnPour" Interval="1" Content="Pour your drink" Visibility="Collapsed" Click="btnPour_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="0"/>
 
         <Image x:Name="imgTea" Visibility="Collapsed" Source="/Images/HotChocolate.jpg"/>
         <Button x:Name="btnReturn" Content="Choose your next drink" Command="{Binding BackCommand}" Grid.Row="0" VerticalAlignment="Bottom" Visibility="Collapsed"/>
